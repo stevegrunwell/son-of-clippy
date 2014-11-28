@@ -1026,7 +1026,9 @@ jQuery( function( $ ) {
 		agent.show();
 
 		agent.speak( sonOfClippy.i18n.wantHelp );
-		console.warn( sonOfClippy.i18n.consoleMessage );
+		if ( 'undefined' !== console ) {
+			console.warn( sonOfClippy.i18n.consoleMessage );
+		}
 
 		// Actions
 		$(document).on( 'before-autosave', function () {
