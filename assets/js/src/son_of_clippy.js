@@ -8,8 +8,16 @@
 jQuery( function( $ ) {
 	'use strict';
 
-	clippy.load('Clippy', function(agent){
-      // do anything with the loaded agent
-      agent.show();
-  });
+	clippy.load(sonOfClippy.agent, function ( agent ) {
+		agent.show();
+
+		agent.speak( sonOfClippy.i18n.wantHelp );
+		console.warn( sonOfClippy.i18n.consoleMessage );
+
+		// Actions
+		$(document).on( 'before-autosave', function () {
+			agent.play( 'Save' );
+		} );
+
+	} );
 } );

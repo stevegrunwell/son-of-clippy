@@ -34,11 +34,37 @@ function clippy_init() {
  */
 function clippy_register_assets() {
 	$screen = get_current_screen();
+	if ( 'post' === $screen->base ) {
+		$user = wp_get_current_user();
+		$post_type = get_post_type_object( $screen->post_type );
+		$singular_name = $post_type->labels->singular_name;
 
-	wp_register_style( 'son-of-clippy', CLIPPY_URL . 'assets/css/son_of_clippy.min.css', null, CLIPPY_VERSION );
-	wp_register_script( 'son-of-clippy', CLIPPY_URL . 'assets/js/son_of_clippy.min.js', array( 'jquery' ), CLIPPY_VERSION, true );
+		$i18n = array(
+			'agent' => 'Clippy',
+			'i18n' => array(
+				'consoleMessage' => __( 'You think your console will help you? Puny human, I am 90s incarnate!', 'clippy' ),
+				'wantHelp' => sprintf(
+					__( '%s, it looks like you\'re trying to write a %s; want some help?', 'clippy' ),
+					$user->user_firstname ? $user->user_firstname : $user->display_name,
+					strtolower( $singular_name )
+				)
+			)
+		);
 
-	if ( is_admin() && 'post' === $screen->base ) {
+		/**
+		 * Filter the arguments passed to Son of Clippy.
+		 *
+		 * Contents include:
+		 * - The agent being used (default: Clippy).
+		 * - Internationalization strings.
+		 */
+		$i18n = apply_filters( 'son-of-clippy-args', $i18n );
+
+		wp_register_style( 'son-of-clippy', CLIPPY_URL . 'assets/css/son_of_clippy.min.css', null, CLIPPY_VERSION );
+		wp_register_script( 'son-of-clippy', CLIPPY_URL . 'assets/js/son_of_clippy.min.js', array( 'jquery' ), CLIPPY_VERSION, true );
+		wp_localize_script( 'son-of-clippy', 'sonOfClippy', $i18n );
+
+		// Enqueue the newly-registered assets
 		wp_enqueue_style( 'son-of-clippy' );
 		wp_enqueue_script( 'son-of-clippy' );
 	}

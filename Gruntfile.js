@@ -27,6 +27,7 @@ module.exports = function( grunt ) {
 				'assets/js/test/**/*.js'
 			],
 			options: {
+				browser: true,
 				curly:   true,
 				eqeqeq:  true,
 				immed:   true,
@@ -41,8 +42,10 @@ module.exports = function( grunt ) {
 					exports: true,
 					module:  false,
 					jQuery: true,
-					clippy: true
-				}
+					console: true,
+					clippy: true,
+					sonOfClippy: true
+				},
 			}
 		},
 		uglify: {
