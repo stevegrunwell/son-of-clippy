@@ -28,7 +28,7 @@ function clippy_init() {
 
 	// Register settings
 	add_settings_field( 'son_of_clippy_agent', __( 'Office Assistant', 'clippy' ), 'clippy_agent_option_cb', 'writing', 'default' );
-	register_setting( 'writing', 'son_of_clippy_agent' );
+	register_setting( 'writing', 'son_of_clippy_agent', 'clippy_validate_agent_selection' );
 }
 
 /**
