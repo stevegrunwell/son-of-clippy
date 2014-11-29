@@ -6,6 +6,18 @@ After Clippy had been around long enough to be considered ironically funny (no j
 
 **Note:** In case you haven't realized it yet, this plugin won't do anything useful for you, but will add an animated character to your WordPress post edit screen. You can drag the character around, click on it, and watch it interact with your mouse, but this is strictly a novelty plugin.
 
+## Frequently asked questions
+
+### Will this plugin help make me a better writer?
+
+Absolutely not. Paper clips are great at holding paper together, but are rarely commended for their writing abilities. Their lack of ethics, due primarily to their absence of independent thought and generally "alive-ness" also makes paper clips (and familial office products) wholly unqualified as journalists.
+
+### That paper clip is awful, how can I make it a cat?
+
+What an oddly-specific question.
+
+If you're sick of Clippy and its annoying face, there's a whole cast of characters to choose from, including a wizard, genie, and yes, even a cat. Your assistant can be configured by visiting the Writing settings page within WordPress.
+
 ## License
 
 The MIT License (MIT)
