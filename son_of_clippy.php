@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Son of Clippy
- * Plugin URI:  http://wordpress.org/plugins
+ * Plugin URI:  https://github.com/stevegrunwell/son-of-clippy
  * Description: Add "fun" animated characters to your WordPress edit screens!
  * Version:     0.1.0
  * Author:      Steve Grunwell
@@ -25,6 +25,30 @@ function clippy_init() {
 	$locale = apply_filters( 'plugin_locale', get_locale(), 'clippy' );
 	load_textdomain( 'clippy', WP_LANG_DIR . '/clippy/clippy-' . $locale . '.mo' );
 	load_plugin_textdomain( 'clippy', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+
+	// Register settings
+	add_settings_field( 'son_of_clippy_agent', __( 'Office Assistant', 'clippy' ), 'clippy_agent_option_cb', 'writing', 'default' );
+	register_setting( 'writing', 'son_of_clippy_agent' );
+}
+
+/**
+ * Get an array of available Clippy agents (characters).
+ *
+ * @return array
+ */
+function clippy_get_available_agents() {
+	return array(
+		'Bonzi',
+		'Clippy',
+		'F1',
+		'Genie',
+		'Genius',
+		'Links',
+		'Merlin',
+		'Peedy',
+		'Rocky',
+		'Rover'
+	);
 }
 
 /**
@@ -40,7 +64,7 @@ function clippy_register_assets() {
 		$singular_name = $post_type->labels->singular_name;
 
 		$i18n = array(
-			'agent' => 'Clippy',
+			'agent' => get_option( 'son_of_clippy_agent', 'Clippy' ),
 			'i18n' => array(
 				'consoleMessage' => __( 'You think your console will help you? Puny human, I am 90s incarnate!', 'clippy' ),
 				'wantHelp' => sprintf(
@@ -69,6 +93,47 @@ function clippy_register_assets() {
 		wp_enqueue_script( 'son-of-clippy' );
 	}
 }
+
+/**
+ * Callback for the Clippy agent selection settings field
+ */
+function clippy_agent_option_cb() {
+	$val = get_option( 'son_of_clippy_agent', 'Clippy' );
+	$options = array();
+
+	// Build our options
+	foreach ( clippy_get_available_agents() as $agent ) {
+		$options[] = sprintf(
+			'<option value="%s" %s>%s</option>',
+			$agent,
+			selected( $val, $agent, false ),
+			$agent
+		);
+	}
+
+	// Output the results
+	printf( '<select name="son_of_clippy_agent" id="son_of_clippy_agent">%s</option>', implode( '', $options ) );
+}
+
+/**
+ * Validate that the selected agent is in our whitelist.
+ *
+ * If an invalid selection is made, Clippy will be returned as the default.
+ *
+ * @param str $selection The selected agent.
+ * @return str
+ */
+function clippy_validate_agent_selection( $selection ) {
+	return in_array( $selection, clippy_get_available_agents() ) ? $selection : 'Clippy';
+}
+
+/**
+ * Activate the plugin.
+ */
+function clippy_activate() {
+	clippy_init();
+}
+register_activation_hook( __FILE__, 'clippy_activate' );
 
 // Wireup actions
 add_action( 'admin_init', 'clippy_init' );
