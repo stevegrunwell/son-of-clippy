@@ -29,13 +29,13 @@ After Clippy had been around long enough to be considered ironically funny (no j
 
 = Will this plugin help make me a better writer? =
 
-Absolutely not. Paper clips are great at holding paper together, but are rarely commended for their writing abilities. Their lack of ethics, due primarily to their absence of independent thought and generally "alive-ness" also makes paper clips (and familial office products) wholly unqualified as journalists.
+Absolutely not. Paper clips are great at holding paper together, but are rarely commended for their writing abilities. Their lack of ethics, due primarily to their absence of independent thought and general "alive-ness" also makes paper clips (and familial office products) wholly unqualified as journalists.
 
 = That paper clip is awful, how can I make it a cat? =
 
 What an oddly-specific question.
 
-If you're sick of Clippy and its annoying face, there's a whole cast of characters to choose from, including a wizard, genie, and yes, even a cat. Your assistant can be configured by visiting the Writing settings page within WordPress.
+If you're sick of Clippy and its annoying face, there's a whole cast of characters to choose from including a wizard, genie, and yes, even a cat. Your assistant can be configured by visiting the Writing settings page within WordPress.
 
 == Screenshots ==
 
