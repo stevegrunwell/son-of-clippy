@@ -39,6 +39,7 @@ If you're sick of Clippy and its annoying face, there's a whole cast of characte
 
 == Screenshots ==
 
+1. Clippy "helping" you write a page.
 
 == Changelog ==
 

@@ -6,6 +6,8 @@ After Clippy had been around long enough to be considered ironically funny (no j
 
 **Note:** In case you haven't realized it yet, this plugin won't do anything useful for you, but will add an animated character to your WordPress post edit screen. You can drag the character around, click on it, and watch it interact with your mouse, but this is strictly a novelty plugin.
 
+![Clippy "helping" you write a page](screenshot-1.jpg)
+
 ## Frequently asked questions
 
 ### Will this plugin help make me a better writer?
