@@ -14,6 +14,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 	define( 'ABSPATH', __DIR__ . '/dummy-files/' );
 }
 
+if ( ! defined( 'CLIPPY_URL' ) ) {
+	define( 'CLIPPY_URL', 'https://example.com' );
+}
+
+if ( ! defined( 'CLIPPY_VERSION' ) ) {
+	define( 'CLIPPY_VERSION', 'test' );
+}
+
 if ( ! file_exists( __DIR__ . '/../vendor/autoload.php' ) ) {
 	throw new PHPUnit_Framework_Exception(
 		'ERROR: You must use Composer to install the test suite\'s dependencies!' . PHP_EOL
