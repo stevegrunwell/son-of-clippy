@@ -43,7 +43,8 @@ function enqueue_assets() {
 		'i18n'  => array(
 			'consoleMessage' => __( 'You think your console will help you? Puny human, I am 90s incarnate!', 'son-of-clippy' ),
 			'wantHelp'       => sprintf(
-				__( '%s, it looks like you\'re trying to write a %s; want some help?', 'son-of-clippy' ),
+				/** Translators: %1$s is the user's name, %2$s is the post type. */
+				__( '%1$s, it looks like you\'re trying to write a %2$s; want some help?', 'son-of-clippy' ),
 				$user->user_firstname ? $user->user_firstname : $user->display_name,
 				strtolower( $post_type->labels->singular_name )
 			),
