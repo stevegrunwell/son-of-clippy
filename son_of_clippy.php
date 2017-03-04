@@ -14,7 +14,6 @@
 // Useful global constants
 define( 'CLIPPY_VERSION', '0.1.0' );
 define( 'CLIPPY_URL',     plugin_dir_url( __FILE__ ) );
-define( 'CLIPPY_PATH',    dirname( __FILE__ ) . '/' );
 
 require_once __DIR__ . '/includes/core.php';
 require_once __DIR__ . '/includes/settings.php';
