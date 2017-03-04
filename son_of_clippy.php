@@ -7,7 +7,7 @@
  * Author:      Steve Grunwell
  * Author URI:  http://stevegrunwell.com
  * License:     GPLv2+
- * Text Domain: clippy
+ * Text Domain: son-of-clippy
  * Domain Path: /languages
  */
 
@@ -18,17 +18,6 @@ define( 'CLIPPY_PATH',    dirname( __FILE__ ) . '/' );
 
 require_once __DIR__ . '/includes/core.php';
 require_once __DIR__ . '/includes/settings.php';
-
-/**
- * Default initialization for the plugin:
- * - Registers the default textdomain.
- * - Registers scripts and styles.
- */
-function clippy_init() {
-	$locale = apply_filters( 'plugin_locale', get_locale(), 'clippy' );
-	load_textdomain( 'clippy', WP_LANG_DIR . '/clippy/clippy-' . $locale . '.mo' );
-	load_plugin_textdomain( 'clippy', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-}
 
 /**
  * Register scripts and styles used by the plugin.
@@ -45,9 +34,9 @@ function clippy_register_assets() {
 		$i18n = array(
 			'agent' => get_option( 'son_of_clippy_agent', 'Clippy' ),
 			'i18n' => array(
-				'consoleMessage' => __( 'You think your console will help you? Puny human, I am 90s incarnate!', 'clippy' ),
+				'consoleMessage' => __( 'You think your console will help you? Puny human, I am 90s incarnate!', 'son-of-clippy' ),
 				'wantHelp' => sprintf(
-					__( '%s, it looks like you\'re trying to write a %s; want some help?', 'clippy' ),
+					__( '%s, it looks like you\'re trying to write a %s; want some help?', 'son-of-clippy' ),
 					$user->user_firstname ? $user->user_firstname : $user->display_name,
 					strtolower( $singular_name )
 				)
@@ -73,14 +62,4 @@ function clippy_register_assets() {
 	}
 }
 
-/**
- * Activate the plugin.
- */
-function clippy_activate() {
-	clippy_init();
-}
-register_activation_hook( __FILE__, 'clippy_activate' );
-
-// Wireup actions
-add_action( 'admin_init', 'clippy_init' );
 add_action( 'admin_enqueue_scripts', 'clippy_register_assets' );

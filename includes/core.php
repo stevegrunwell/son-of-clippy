@@ -27,3 +27,11 @@ function get_agents() {
 		'Rover',
 	);
 }
+
+/**
+ * Load the plugin textdomain.
+ */
+function load_textdomain() {
+	load_plugin_textdomain( 'son-of-clippy', false, plugin_basename( dirname( __DIR__ ) ) . '/languages' );
+}
+add_action( 'plugins_loaded', __NAMESPACE__ . '\load_textdomain' );

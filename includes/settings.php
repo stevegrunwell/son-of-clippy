@@ -16,7 +16,7 @@ use SonOfClippy\Core as Core;
 function register_plugin_settings() {
 	add_settings_field(
 		'son_of_clippy_agent',
-		__( 'Office Assistant', 'clippy' ),
+		__( 'Office Assistant', 'son-of-clippy' ),
 		__NAMESPACE__ . '\render_agent_selection',
 		'writing',
 		'default'

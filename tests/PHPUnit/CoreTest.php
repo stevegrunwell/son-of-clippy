@@ -22,4 +22,14 @@ class CoreTest extends \SonOfClippy\TestCase {
 		$this->assertInternalType( 'array', $agents );
 		$this->assertContains( 'Clippy', $agents );
 	}
+
+	public function testLoadTextdomain() {
+		M::userFunction( 'load_plugin_textdomain', array(
+			'times' => 1,
+		) );
+
+		M::passthruFunction( 'plugin_basename' );
+
+		load_textdomain();
+	}
 }
