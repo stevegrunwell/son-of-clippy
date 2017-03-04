@@ -7,7 +7,11 @@
  */
 
 if ( ! defined( 'PROJECT' ) ) {
-	define( 'PROJECT', __DIR__ . '/../' );
+	define( 'PROJECT', __DIR__ . '/../includes/' );
+}
+
+if ( ! defined( 'ABSPATH' ) ) {
+	define( 'ABSPATH', __DIR__ . '/dummy-files/' );
 }
 
 if ( ! file_exists( __DIR__ . '/../vendor/autoload.php' ) ) {
@@ -19,8 +23,6 @@ if ( ! file_exists( __DIR__ . '/../vendor/autoload.php' ) ) {
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/test-tools/TestCase.php';
 
+WP_Mock::setUsePatchwork( true );
 WP_Mock::bootstrap();
-
-require_once PROJECT . 'son_of_clippy.php';
-
 WP_Mock::tearDown();

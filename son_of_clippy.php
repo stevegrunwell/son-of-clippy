@@ -16,6 +16,9 @@ define( 'CLIPPY_VERSION', '0.1.0' );
 define( 'CLIPPY_URL',     plugin_dir_url( __FILE__ ) );
 define( 'CLIPPY_PATH',    dirname( __FILE__ ) . '/' );
 
+require_once __DIR__ . '/includes/core.php';
+require_once __DIR__ . '/includes/settings.php';
+
 /**
  * Default initialization for the plugin:
  * - Registers the default textdomain.
@@ -25,30 +28,6 @@ function clippy_init() {
 	$locale = apply_filters( 'plugin_locale', get_locale(), 'clippy' );
 	load_textdomain( 'clippy', WP_LANG_DIR . '/clippy/clippy-' . $locale . '.mo' );
 	load_plugin_textdomain( 'clippy', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-
-	// Register settings
-	add_settings_field( 'son_of_clippy_agent', __( 'Office Assistant', 'clippy' ), 'clippy_agent_option_cb', 'writing', 'default' );
-	register_setting( 'writing', 'son_of_clippy_agent', 'clippy_validate_agent_selection' );
-}
-
-/**
- * Get an array of available Clippy agents (characters).
- *
- * @return array
- */
-function clippy_get_available_agents() {
-	return array(
-		'Bonzi',
-		'Clippy',
-		'F1',
-		'Genie',
-		'Genius',
-		'Links',
-		'Merlin',
-		'Peedy',
-		'Rocky',
-		'Rover'
-	);
 }
 
 /**
@@ -92,39 +71,6 @@ function clippy_register_assets() {
 		wp_enqueue_style( 'son-of-clippy' );
 		wp_enqueue_script( 'son-of-clippy' );
 	}
-}
-
-/**
- * Callback for the Clippy agent selection settings field
- */
-function clippy_agent_option_cb() {
-	$val = get_option( 'son_of_clippy_agent', 'Clippy' );
-	$options = array();
-
-	// Build our options
-	foreach ( clippy_get_available_agents() as $agent ) {
-		$options[] = sprintf(
-			'<option value="%s" %s>%s</option>',
-			$agent,
-			selected( $val, $agent, false ),
-			$agent
-		);
-	}
-
-	// Output the results
-	printf( '<select name="son_of_clippy_agent" id="son_of_clippy_agent">%s</option>', implode( '', $options ) );
-}
-
-/**
- * Validate that the selected agent is in our whitelist.
- *
- * If an invalid selection is made, Clippy will be returned as the default.
- *
- * @param str $selection The selected agent.
- * @return str
- */
-function clippy_validate_agent_selection( $selection ) {
-	return in_array( $selection, clippy_get_available_agents() ) ? $selection : 'Clippy';
 }
 
 /**

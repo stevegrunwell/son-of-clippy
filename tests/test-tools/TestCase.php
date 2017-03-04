@@ -1,6 +1,6 @@
 <?php
 /**
- * Base PHPUnit test case.
+ * Base test case for SonOfClippy.
  *
  * @package SonOfClippy
  * @author  Steve Grunwell
@@ -9,6 +9,19 @@
 namespace SonOfClippy;
 
 class TestCase extends \WP_Mock\Tools\TestCase {
+
+	protected $testFiles = array();
+
+	public function setUp() {
+		if ( ! empty( $this->testFiles ) ) {
+			foreach ( $this->testFiles as $file ) {
+				if ( file_exists( PROJECT . $file ) ) {
+					require_once( PROJECT . $file );
+				}
+			}
+		}
+		parent::setUp();
+	}
 
 	public function run( \PHPUnit_Framework_TestResult $result = null ) {
 		$this->setPreserveGlobalState( false );
