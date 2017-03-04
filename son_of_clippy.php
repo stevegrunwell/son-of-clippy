@@ -9,9 +9,12 @@
  * License:     GPLv2+
  * Text Domain: son-of-clippy
  * Domain Path: /languages
+ *
+ * @package SonOfClippy
+ * @author  Steve Grunwell
  */
 
-// Useful global constants
+// Useful global constants.
 define( 'CLIPPY_VERSION', '0.1.0' );
 define( 'CLIPPY_URL',     plugin_dir_url( __FILE__ ) );
 
