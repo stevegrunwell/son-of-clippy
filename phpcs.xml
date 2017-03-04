@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+	Customize the rules WP Enforcer uses by editing this file according to PHP_CodeSniffer's
+	ruleset.xml standard: https://github.com/squizlabs/PHP_CodeSniffer/wiki/Annotated-ruleset.xml
+-->
+<ruleset name="Son-of-Clippy">
+	<description>Coding standards for Son of Clippy.</description>
+
+	<!-- FILES -->
+	<exclude-pattern>assets/*</exclude-pattern>
+	<exclude-pattern>tests/*</exclude-pattern>
+	<exclude-pattern>vendor/*</exclude-pattern>
+	<exclude-pattern>Gruntfile.js</exclude-pattern>
+
+	<!--
+		Don't get angry about checking files that don't contain code
+		@link https://github.com/stevegrunwell/wp-enforcer/issues/12
+	-->
+	<rule ref="Internal.NoCodeFound">
+		<severity>0</severity>
+	</rule>
+
+	<!-- Changing the main plugin file's name would cause it to be deactivated for users. -->
+	<rule ref="WordPress.Files.FileName.UnderscoresNotAllowed">
+		<exclude-pattern>son_of_clippy.php</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress-Extra" />
+	<rule ref="WordPress-Docs" />
+</ruleset>
