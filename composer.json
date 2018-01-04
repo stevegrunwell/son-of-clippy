@@ -1,29 +1,32 @@
 {
-    "name": "stevegrunwell/son-of-clippy",
-    "description": "Add \"fun\" animated characters to your WordPress edit screens!",
-    "type": "wordpress-plugin",
-    "license": "GPLv2+",
-    "authors": [
-        {
-            "name" : "Steve Grunwell",
-            "email": "steve@stevegrunwell.com",
-            "homepage": "https://stevegrunwell.com"
-        },
-        {
-            "name": "Eric Mann",
-            "homepage": "https://eamann.com/"
-        }
-    ],
-    "require-dev": {
-        "php": "^7.0",
-        "stevegrunwell/wp-enforcer": "dev-master",
-        "codeclimate/php-test-reporter": "dev-master",
-        "phpunit/phpunit": "^6.5",
-        "stevegrunwell/phpunit-markup-assertions": "^1.0"
+  "name": "stevegrunwell/son-of-clippy",
+  "description": "Add \"fun\" animated characters to your WordPress edit screens!",
+  "type": "wordpress-plugin",
+  "license": "GPLv2+",
+  "authors": [
+    {
+      "name": "Steve Grunwell",
+      "email": "steve@stevegrunwell.com",
+      "homepage": "https://stevegrunwell.com"
     },
-    "events": {
-        "post-install-cmd": [
-            "wp-enforcer"
-        ]
+    {
+      "name": "Eric Mann",
+      "homepage": "https://eamann.com/"
     }
+  ],
+  "require-dev": {
+    "php": "^7.0",
+    "stevegrunwell/wp-enforcer": "dev-master",
+    "codeclimate/php-test-reporter": "dev-master",
+    "phpunit/phpunit": "^6.5",
+    "stevegrunwell/phpunit-markup-assertions": "^1.0"
+  },
+  "events": {
+    "post-install-cmd": [
+      "wp-enforcer"
+    ]
+  },
+  "scripts": {
+    "test-coverage": ["phpunit --coverage-html tests/coverage"]
+  }
 }
