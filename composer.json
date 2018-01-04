@@ -18,7 +18,8 @@
         "php": "^7.0",
         "stevegrunwell/wp-enforcer": "dev-master",
         "codeclimate/php-test-reporter": "dev-master",
-        "phpunit/phpunit": "^6.5"
+        "phpunit/phpunit": "^6.5",
+        "stevegrunwell/phpunit-markup-assertions": "^1.0"
     },
     "events": {
         "post-install-cmd": [
