@@ -15,15 +15,13 @@
         }
     ],
     "require-dev": {
+        "php": "^7.0",
         "stevegrunwell/wp-enforcer": "dev-master",
-        "10up/wp_mock": "1.0.x-dev",
-        "codeclimate/php-test-reporter": "dev-master"
+        "codeclimate/php-test-reporter": "dev-master",
+        "phpunit/phpunit": "^6.5"
     },
     "events": {
         "post-install-cmd": [
-            "wp-enforcer"
-        ],
-        "post-update-cmd": [
             "wp-enforcer"
         ]
     }

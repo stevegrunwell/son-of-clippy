@@ -1,36 +1,31 @@
 <?php
 /**
- * Bootstrap the test suite.
+ * PHPUnit bootstrap file.
  *
  * @package SonOfClippy
- * @author  Steve Grunwell
  */
 
-if ( ! defined( 'PROJECT' ) ) {
-	define( 'PROJECT', __DIR__ . '/../includes/' );
+$_tests_dir = getenv( 'WP_TESTS_DIR' );
+
+if ( ! $_tests_dir ) {
+	$_tests_dir = rtrim( sys_get_temp_dir(), '/\\' ) . '/wordpress-tests-lib';
 }
 
-if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', __DIR__ . '/dummy-files/' );
+if ( ! file_exists( $_tests_dir . '/includes/functions.php' ) ) {
+	echo "Could not find $_tests_dir/includes/functions.php, have you run bin/install-wp-tests.sh ?" . PHP_EOL;
+	exit( 1 );
 }
 
-if ( ! defined( 'CLIPPY_URL' ) ) {
-	define( 'CLIPPY_URL', 'https://example.com' );
+// Give access to tests_add_filter() function.
+require_once $_tests_dir . '/includes/functions.php';
+
+/**
+ * Manually load the plugin being tested.
+ */
+function _manually_load_plugin() {
+	require dirname( dirname( __FILE__ ) ) . '/son_of_clippy.php';
 }
+tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
 
-if ( ! defined( 'CLIPPY_VERSION' ) ) {
-	define( 'CLIPPY_VERSION', 'test' );
-}
-
-if ( ! file_exists( __DIR__ . '/../vendor/autoload.php' ) ) {
-	throw new PHPUnit_Framework_Exception(
-		'ERROR: You must use Composer to install the test suite\'s dependencies!' . PHP_EOL
-	);
-}
-
-require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/test-tools/TestCase.php';
-
-WP_Mock::setUsePatchwork( true );
-WP_Mock::bootstrap();
-WP_Mock::tearDown();
+// Start up the WP testing environment.
+require $_tests_dir . '/includes/bootstrap.php';
